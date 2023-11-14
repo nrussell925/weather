@@ -3,29 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
-    <!-- Just googled the bootstrap link; haven't tested it yet. Essentially a placeholder for now -->
+    <title>Weather App</title>
+    <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .weather-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        img.weather-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+        }
+
+        .weather-info {
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Weather</h1>
+    <h1>Weather App</h1>
     <form method="POST">
-        <input type="text" placeholder="Name of city">
-        <button>Add a new city</button>
-
+        <input type="text" class="form-control" placeholder="Name of city">
+        <button class="btn btn-primary">Add a new city</button>
     </form>
 
-    <div>
-        <!-- This will show an image of our current weather conditions; National Weather Service seemed to provide a faulty link that doesn't work; will probably have to change later on-->
-        <img src="http://weather.gov/images/fcicons/tsra.jpg" alt="conditions" style="width:35px; height:35px;">  
-        <div>
+    <div class="weather-container">
+        <img src="http://weather.gov/images/fcicons/tsra.jpg" alt="conditions" class="weather-icon">  
+        <div class="weather-info">
+            <!-- Static; currently not using an API -->
             <h2>New York City</h2>
-            <p>21000° F</p> 
+            <p>21000°C</p> 
             <p>Deathly hot conditions in NYC</p>
         </div>
     </div>
-    
+
 </body>
 </html>
