@@ -16,6 +16,10 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "age",
         "city",
+        "city2",
+        "city3",
+        "city4",
+        "city5",
         "is_staff",
     ]
     fieldsets = UserAdmin.fieldsets + (
@@ -25,6 +29,10 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "age",
                     "city",
+                    "city2",
+                    "city3",
+                    "city4",
+                    "city5",
                 )
             },
         ),
@@ -36,6 +44,10 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "age",
                     "city",
+                    "city2",
+                    "city3",
+                    "city4",
+                    "city5",
                 )
             },
         ),

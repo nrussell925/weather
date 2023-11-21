@@ -7,7 +7,11 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + (
             "age",
-            "city",
+            "city",  # all cities will need a different name
+            "city2",
+            "city3",
+            "city4",
+            "city5",
         )
 
 
