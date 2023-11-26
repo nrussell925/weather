@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php 
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+        header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
@@ -61,8 +67,7 @@
 
 <body>
     <script>
-        function geocode(loc){
-            const lat_long = [];
+        function forecast(loc){
             var location = loc;
             axios.get('https://geocode.maps.co/search',{
                 params:{
@@ -76,19 +81,7 @@
                 //Formatted address
                 console.log(response.data[0].boundingbox[0]);
                 console.log(response.data[0].boundingbox[2]);
-                lat_long[0] = response.data[0].boundingbox[0];
-                lat_long[1] = response.data[0].boundingbox[2];
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-            forecast(lat_long[0],lat_long[1]);
-        }
-        function forecast(lat,long){
-            const forecast_pic = [];
-            var latitude = lat;
-            var longitude = long;
-            axios.get('https://api.weather.gov/points/'+latitude+','+longitude)
+            axios.get('https://api.weather.gov/points/'+response.data[0].boundingbox[0]+','+response.data[0].boundingbox[2])
             .then(function(response){
                 console.log(response);
                 axios.get(response.data.properties.forecast)
@@ -100,29 +93,37 @@
                     console.log(response.data.properties.periods[0].name);
                     console.log(response.data.properties.periods[0].detailedForecast);
                     console.log(response.data.properties.periods[0].icon);
-                    forecast_pic[0] = response.data.properties.periods[0].name;
-                    forecast_pic[1] = response.data.properties.periods[0].detailedForecast;
-                    forecast_pic[2] = response.data.properties.periods[0].icon;
+                    const markup = `<li>${response.data.properties.periods[0].name}</li>`;
+                    selectElement = document.querySelector('#loc');
+                    output = selectElement.value;
+                    document.querySelector('.output').insertAdjacentHTML('beforeend', markup);
+                    const markup1 = `<li>${response.data.properties.periods[0].detailedForecast}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup1);
 
-                    forecast_pic[3] = response.data.properties.periods[0].name;
-                    forecast_pic[4] = response.data.properties.periods[0].detailedForecast;
-                    forecast_pic[5] = response.data.properties.periods[0].icon;
+                    const markup3 = `<li>${response.data.properties.periods[1].name}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup3);
+                    const markup4 = `<li>${response.data.properties.periods[1].detailedForecast}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup4);
 
-                    forecast_pic[6] = response.data.properties.periods[0].name;
-                    forecast_pic[7] = response.data.properties.periods[0].detailedForecast;
-                    forecast_pic[8] = response.data.properties.periods[0].icon;
+                    const markup6 = `<li>${response.data.properties.periods[2].name}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup6);
+                    const markup7 = `<li>${response.data.properties.periods[2].detailedForecast}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup7);
 
-                    forecast_pic[9] = response.data.properties.periods[0].name;
-                    forecast_pic[10] = response.data.properties.periods[0].detailedForecast;
-                    forecast_pic[11] = response.data.properties.periods[0].icon;
+                    const markup9 = `<li>${response.data.properties.periods[3].name}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup9);
+                    const markup10 = `<li>${response.data.properties.periods[3].detailedForecast}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup10);
 
-                    forecast_pic[12] = response.data.properties.periods[0].name;
-                    forecast_pic[13] = response.data.properties.periods[0].detailedForecast;
-                    forecast_pic[14] = response.data.properties.periods[0].icon;
+                    const marku12 = `<li>${response.data.properties.periods[4].name}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup);
+                    const markup13 = `<li>${response.data.properties.periods[4].detailedForecast}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup1);
 
-                    forecast_pic[15] = response.data.properties.periods[0].name;
-                    forecast_pic[16] = response.data.properties.periods[0].detailedForecast;
-                    forecast_pic[17] = response.data.properties.periods[0].icon;
+                    const markup14 = `<li>${response.data.properties.periods[5].name}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup14);
+                    const markup15 = `<li>${response.data.properties.periods[5].detailedForecast}</li>`;
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup15);
                 })
                 .catch(function(error){
                     console.log(error);
@@ -131,11 +132,18 @@
             .catch(function(error){
                 console.log(error);
             });
-            return forecast_pic;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
         }
     </script>
     <h1>Weather App</h1>
-    <form method="POST">
+
+    {% block content %}
+    {% if user.is_authenticated %}
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
         <input type="text" class="form-control" name="textfield" placeholder="Name of city">
         <button onclick="geocode('textfield')" class="btn btn-primary">Add a new city</button>
     </form>
@@ -144,11 +152,38 @@
         <img src="http://weather.gov/images/fcicons/tsra.jpg" alt="conditions" class="weather-icon">  
         <div class="weather-info">
             <!-- Static; currently not using an API -->
-            <h2>New York City</h2>
-            <p>21000°C</p> 
-            <p>Deathly hot conditions in NYC</p>
+            <h2>{{ user.city }}</h2>
+            <script>
+                forecast('{{ user.city }}');
+            </script>
+            <ul id="{{ user.city }}"></ul>
+            <h2>{{ user.city2 }}</h2>
+            <script>
+                forecast('{{ user.city2 }}');
+            </script>
+            <ul id="{{ user.city2 }}"></ul>
+            <h2>{{ user.city3 }}</h2>
+            <script>
+                forecast('{{ user.city3 }}');
+            </script>
+            <ul id="{{ user.city3 }}"></ul>
+            <h2>{{ user.city4 }}</h2>
+            <script>
+                forecast('{{ user.city4 }}');
+            </script>
+            <ul id="{{ user.city4 }}"></ul>
+            <h2>{{ user.city5 }}</h2>
+            <script>
+                forecast('{{ user.city5 }}');
+            </script>
+            <ul id="{{ user.city5 }}"></ul>
         </div>
     </div>
-
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    {% endblock content %}
 </body>
 </html>
