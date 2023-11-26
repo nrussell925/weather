@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php 
         header('Access-Control-Allow-Origin: *');
@@ -47,19 +49,22 @@
             background-color: #0056b3;
         }
 
-        .weather-container {
+        .box {
+            /* New container class */
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
 
-        img.weather-icon {
+        .image.is-50x50 img {
+            /* Adjust the size of the weather icon */
             width: 35px;
             height: 35px;
             margin-right: 10px;
         }
 
-        .weather-info {
+        .media-content {
+            /* Adjust the alignment of the content */
             text-align: left;
         }
     </style>
@@ -149,7 +154,7 @@
     </form>
 
     <div class="weather-container">
-        <img src="http://weather.gov/images/fcicons/tsra.jpg" alt="conditions" class="weather-icon">  
+        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image"> 
         <div class="weather-info">
             <!-- Static; currently not using an API -->
             <h2>{{ user.city }}</h2>
@@ -178,6 +183,26 @@
             </script>
             <ul id="{{ user.city5 }}"></ul>
         </div>
+    <div class="box"> <!-- Updated container class -->
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-50x50">
+                    <!-- Use the provided weather icon URL -->
+                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <span class="title">{{ weather.city }}</span>
+                        <br>
+                        <span class="subtitle">{{ weather.temperature }}° F</span>
+                        <br> {{ weather.description }}
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
     </div>
     {% else %}
     <p>You are not logged in</p>
@@ -186,4 +211,5 @@
     {% endif %}
     {% endblock content %}
 </body>
+
 </html>
