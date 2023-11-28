@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php 
         header('Access-Control-Allow-Origin: *');
@@ -49,22 +47,19 @@
             background-color: #0056b3;
         }
 
-        .box {
-            /* New container class */
+        .weather-container {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
 
-        .image.is-50x50 img {
-            /* Adjust the size of the weather icon */
+        img.weather-icon {
             width: 35px;
             height: 35px;
             margin-right: 10px;
         }
 
-        .media-content {
-            /* Adjust the alignment of the content */
+        .weather-info {
             text-align: left;
         }
     </style>
@@ -99,9 +94,7 @@
                     console.log(response.data.properties.periods[0].detailedForecast);
                     console.log(response.data.properties.periods[0].icon);
                     const markup = `<li>${response.data.properties.periods[0].name}</li>`;
-                    selectElement = document.querySelector('#loc');
-                    output = selectElement.value;
-                    document.querySelector('.output').insertAdjacentHTML('beforeend', markup);
+                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup);
                     const markup1 = `<li>${response.data.properties.periods[0].detailedForecast}</li>`;
                     document.querySelector('#loc').insertAdjacentHTML('beforeend', markup1);
 
@@ -154,7 +147,7 @@
     </form>
 
     <div class="weather-container">
-        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image"> 
+        <img src="http://weather.gov/images/fcicons/tsra.jpg" alt="conditions" class="weather-icon">  
         <div class="weather-info">
             <!-- Static; currently not using an API -->
             <h2>{{ user.city }}</h2>
@@ -183,26 +176,6 @@
             </script>
             <ul id="{{ user.city5 }}"></ul>
         </div>
-    <div class="box"> <!-- Updated container class -->
-        <article class="media">
-            <div class="media-left">
-                <figure class="image is-50x50">
-                    <!-- Use the provided weather icon URL -->
-                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
-                </figure>
-            </div>
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <span class="title">{{ weather.city }}</span>
-                        <br>
-                        <span class="subtitle">{{ weather.temperature }}° F</span>
-                        <br> {{ weather.description }}
-                    </p>
-                </div>
-            </div>
-        </article>
-    </div>
     </div>
     {% else %}
     <p>You are not logged in</p>
@@ -211,5 +184,4 @@
     {% endif %}
     {% endblock content %}
 </body>
-
 </html>
