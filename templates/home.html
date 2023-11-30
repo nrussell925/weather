@@ -95,8 +95,8 @@
                 //console.log(response);
 
                 //Formatted address
-                //console.log(response.data[0].boundingbox[0]);
-                //console.log(response.data[0].boundingbox[2]);
+                console.log(response.data[0].boundingbox[0]);
+                console.log(response.data[0].boundingbox[2]);
             axios.get('https://api.weather.gov/points/'+response.data[0].boundingbox[0]+','+response.data[0].boundingbox[2])
             .then(function(response){
                 //console.log(response);
@@ -200,17 +200,37 @@
 
     <div class="weather-container">
         <div class="weather-info">
+            {% if user.city %}
             <div id="image-container"></div>
             <h2>{{ user.city }}</h2>
             <ul id="first"></ul>
+            {% else %}
+            <p><a href="{% url 'update_city' %}">+ New</a></p>
+            {% endif %}
+            {% if user.city2 %}
             <h2>{{ user.city2 }}</h2>
             <ul id="second"></ul>
+            {% else %}
+            <p><a href="{% url 'update_city' %}">+ New</a></p>
+            {% endif %}
+            {% if user.city3 %}
             <h2>{{ user.city3 }}</h2>
             <ul id="third"></ul>
+            {% else %}
+            <p><a href="{% url 'update_city' %}">+ New</a></p>
+            {% endif %}
+            {% if user.city4 %}
             <h2>{{ user.city4 }}</h2>
             <ul id="fourth"></ul>
+            {% else %}
+            <p><a href="{% url 'update_city' %}">+ New</a></p>
+            {% endif %}
+            {% if user.city5 %}
             <h2>{{ user.city5 }}</h2>
             <ul id="fifth"></ul>
+            {% else %}
+            <p><a href="{% url 'update_city' %}">+ New</a></p>
+            {% endif %}
             <script>
                 forecast('{{ user.city }}', 'first');
                 forecast('{{ user.city2 }}', 'second');
