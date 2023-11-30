@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +53,7 @@
             border: none;
             padding: 10px 15px;
             cursor: pointer;
-            border-radious: 5px;
+            border-radius: 5px;
         }
 
         button:hover {
@@ -77,6 +79,14 @@
         .weather-info {
             text-align: left;
         }
+        /*p {
+            display: flex;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+
+        }*/
     </style>
 </head>
 
@@ -192,6 +202,9 @@
 
     {% block content %}
     {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}</p>
+    <p> <a href="{% url 'logout' %}">Log Out</a></p>
+    <p> <a href="{% url 'password_change' %}">CHANGE PASSWORD</a></p>
     <form method="POST">{% csrf_token %}
         {{ form.as_p }}
         <input type="text" class="form-control" name="textfield" placeholder="Name of city">
