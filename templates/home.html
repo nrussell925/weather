@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,11 +15,13 @@
     <style>
         body {
             padding: 20px;
+            font-family: 'Arial', sans-serif; 
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            color: #007bff; 
         }
 
         form {
@@ -29,7 +32,12 @@
 
         input {
             margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
         }
+
+ 
 
         button {
             background-color: #007bff;
@@ -37,6 +45,7 @@
             border: none;
             padding: 10px 15px;
             cursor: pointer;
+            border-radius: 5px; 
         }
 
         button:hover {
@@ -44,23 +53,43 @@
         }
 
         .box {
-            /* New container class */
             display: flex;
             align-items: center;
+            justify-content: center; 
             margin-bottom: 20px;
+            border: 1px solid #ddd; 
+            padding: 20px;
+            border-radius: 10px; 
         }
 
         .image.is-50x50 img {
-            /* Adjust the size of the weather icon */
-            width: 35px;
-            height: 35px;
+            width: 50px;
+            height: 50px;
             margin-right: 10px;
         }
 
         .media-content {
-            /* Adjust the alignment of the content */
             text-align: left;
         }
+
+        
+        .media-content .title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .media-content .subtitle {
+            font-size: 1.1em;
+            color: #555; /* Use a darker color for subtitles */
+        }
+
+        .media-content .content p {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #777; /* Use a slightly lighter color for content text */
+        }
+        
+
     </style>
 </head>
 
@@ -105,27 +134,27 @@
                     console.log(response.data.properties.periods[0].name);
                     console.log(response.data.properties.periods[0].detailedForecast);
                     console.log(response.data.properties.periods[0].icon);
-                    forecast_pic[0] = response.data.properties.periods[0].name;
+                    forecast_pic[0] = response.data.properties.periods[0].name; //Today
                     forecast_pic[1] = response.data.properties.periods[0].detailedForecast;
                     forecast_pic[2] = response.data.properties.periods[0].icon;
 
-                    forecast_pic[3] = response.data.properties.periods[0].name;
+                    forecast_pic[3] = response.data.properties.periods[0].name; //Tonight
                     forecast_pic[4] = response.data.properties.periods[0].detailedForecast;
                     forecast_pic[5] = response.data.properties.periods[0].icon;
 
-                    forecast_pic[6] = response.data.properties.periods[0].name;
+                    forecast_pic[6] = response.data.properties.periods[0].name; //Tommorrow Day
                     forecast_pic[7] = response.data.properties.periods[0].detailedForecast;
                     forecast_pic[8] = response.data.properties.periods[0].icon;
 
-                    forecast_pic[9] = response.data.properties.periods[0].name;
+                    forecast_pic[9] = response.data.properties.periods[0].name; //Tommorrow Night
                     forecast_pic[10] = response.data.properties.periods[0].detailedForecast;
                     forecast_pic[11] = response.data.properties.periods[0].icon;
 
-                    forecast_pic[12] = response.data.properties.periods[0].name;
+                    forecast_pic[12] = response.data.properties.periods[0].name; //Day 3 day
                     forecast_pic[13] = response.data.properties.periods[0].detailedForecast;
                     forecast_pic[14] = response.data.properties.periods[0].icon;
 
-                    forecast_pic[15] = response.data.properties.periods[0].name;
+                    forecast_pic[15] = response.data.properties.periods[0].name; //Day 3 Night
                     forecast_pic[16] = response.data.properties.periods[0].detailedForecast;
                     forecast_pic[17] = response.data.properties.periods[0].icon;
                 })
@@ -145,7 +174,7 @@
         <button onclick="geocode('textfield')" class="btn btn-primary">Add a new city</button>
     </form>
 
-    <div class="box"> <!-- Updated container class -->
+    <div class="box"> 
         <article class="media">
             <div class="media-left">
                 <figure class="image is-50x50">

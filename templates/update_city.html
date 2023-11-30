@@ -1,0 +1,6 @@
+
+<form method="post" action="{% url 'update_city' %}"> {% csrf_token %}
+    
+    {{ form }}
+    <button type="submit">Update City</button>
+</form>

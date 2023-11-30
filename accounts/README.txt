@@ -1,0 +1,1 @@
+Accounts app that allows users to make their own custom accounts with their own custom cities. The cities chosen by the user will be displayed on the home page and display weather, humitity, forecast, etc of the selected city. This allows the user a tailored experience exclusive to their account.

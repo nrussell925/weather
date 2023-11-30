@@ -1,0 +1,1 @@
+Weather app that keeps track of our homepage and different views that are essential to have a working weather app.
