@@ -1,40 +1,27 @@
+{% load static %}
 <html>
+
 <head>
-<title>Weather App</title>
+  <title>HAHAHAHA</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+  <link href="{% static 'css/base.css' %}" rel="stylesheet" s>
 </head>
+
 <body>
-    <header>
-        <div class="d-flex flex-wrap align-items-center justify-content-center
-        justify-content-lg-start">
-      <a class="navbar-brand" href="{% url 'home' %}">Weather</a>
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center
-          mb-md-0">
-        {% if user.is_authenticated %}
-      </ul>
-      <div class="dropdown text-end">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          {{ user.username }}
-        </a>
-        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-          <li><a class="dropdown-item" href="{% url 'password_change' %}">
-              Change password</a></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-        </ul>
-      </div>
-      {% else %}
-      </ul>
-      <div class="text-end">
-        <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">
-          Log In</a>
-        <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
-      </div>
-      {% endif %}
-    </div>
-    </div>
-    </header>
-<div>
+  <div>
+    <!-- start new HTML... -->
+    {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}!</p>
+    <p><a href="{% url 'logout' %}">Log out</a></p>
+    {% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    <!--- end new HTML... -->
     {% block content %}
     {% endblock content %}
-</div>
-</body> </html>
+  </div>
+</body>
+
+</html>
