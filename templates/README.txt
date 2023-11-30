@@ -1,0 +1,1 @@
+Templates file contains our html files that will display our pages. These pages will display our cities chosen by the user and all the different stats on weather currently going on in that city.

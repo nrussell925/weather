@@ -15,14 +15,21 @@
     <title>Weather</title>
     <!-- Just googled the bootstrap link; haven't tested it yet. Essentially a placeholder for now -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link to our google font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori+Antique&display=swap"> 
     <style>
         body {
             padding: 20px;
+            font-family: 'Shippori Antique', sans-serif;
         }
 
-        h1 {
+        h1 { /* "Weather App" */
+            font-family: 'Oleo Script', cursive;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            color: #007bff;
+            font-size: 60px;
         }
 
         form {
@@ -33,6 +40,9 @@
 
         input {
             margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
         button {
@@ -41,6 +51,7 @@
             border: none;
             padding: 10px 15px;
             cursor: pointer;
+            border-radious: 5px;
         }
 
         button:hover {
@@ -50,7 +61,11 @@
         .weather-container {
             display: flex;
             align-items: center;
+            /*justify-content: center; uncomment to center our cities midscreen*/ 
             margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
         }
 
         img.weather-icon {
