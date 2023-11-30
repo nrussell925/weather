@@ -67,8 +67,9 @@
 
 <body>
     <script>
-        function forecast(loc){
-            var location = loc;
+        function forecast(loc, a){
+            const location = loc;
+            const tag = a;
             axios.get('https://geocode.maps.co/search',{
                 params:{
                     q:location
@@ -76,52 +77,88 @@
             })
             .then(function(response){
                 // Log full response
-                console.log(response);
+                //console.log(response);
 
                 //Formatted address
-                console.log(response.data[0].boundingbox[0]);
-                console.log(response.data[0].boundingbox[2]);
+                //console.log(response.data[0].boundingbox[0]);
+                //console.log(response.data[0].boundingbox[2]);
             axios.get('https://api.weather.gov/points/'+response.data[0].boundingbox[0]+','+response.data[0].boundingbox[2])
             .then(function(response){
-                console.log(response);
+                //console.log(response);
                 axios.get(response.data.properties.forecast)
                 .then(function(response){
-                    console.log(response);
+                    //console.log(response);
                     //Change to return when the forecast is followed by
                     //forecast and icon. Return in array 3 at a time for
                     //"three day forecast"
-                    console.log(response.data.properties.periods[0].name);
-                    console.log(response.data.properties.periods[0].detailedForecast);
-                    console.log(response.data.properties.periods[0].icon);
-                    const markup = `<li>${response.data.properties.periods[0].name}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup);
-                    const markup1 = `<li>${response.data.properties.periods[0].detailedForecast}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup1);
+                    //console.log(response.data.properties.periods[0].name);
+                    //console.log(response.data.properties.periods[0].detailedForecast);
+                    //console.log(response.data.properties.periods[0].icon);
+                    const imageUrl = response.data.properties.periods[0].icon;
+                    const imageElement = document.createElement("img");
+                    imageElement.src = imageUrl;
+                    const markup = `<p><strong>${response.data.properties.periods[0].name}</strong></p>`;
+                    const name = document.getElementById(tag)
+                    name.insertAdjacentHTML('beforeend', markup);
+                    const markup1 = `<p>${response.data.properties.periods[0].detailedForecast}</p><br>`;
+                    const name1 = document.getElementById(tag)
+                    name1.appendChild(imageElement);
+                    name1.insertAdjacentHTML('beforeend', markup1);
 
-                    const markup3 = `<li>${response.data.properties.periods[1].name}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup3);
-                    const markup4 = `<li>${response.data.properties.periods[1].detailedForecast}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup4);
+                    const imageUrl2 = response.data.properties.periods[1].icon;
+                    const imageElement2 = document.createElement("img");
+                    imageElement2.src = imageUrl2;
+                    const markup2 = `<p><strong>${response.data.properties.periods[1].name}</strong></p>`;
+                    const name2 = document.getElementById(tag)
+                    name2.insertAdjacentHTML('beforeend', markup2);
+                    const markup3 = `<p>${response.data.properties.periods[1].detailedForecast}</p><br>`;
+                    const name3 = document.getElementById(tag)
+                    name3.appendChild(imageElement2);
+                    name3.insertAdjacentHTML('beforeend', markup3);
 
-                    const markup6 = `<li>${response.data.properties.periods[2].name}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup6);
-                    const markup7 = `<li>${response.data.properties.periods[2].detailedForecast}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup7);
+                    const imageUrl3 = response.data.properties.periods[2].icon;
+                    const imageElement3 = document.createElement("img");
+                    imageElement3.src = imageUrl3;
+                    const markup4 = `<p><strong>${response.data.properties.periods[2].name}</strong></p>`;
+                    const name4 = document.getElementById(tag)
+                    name4.insertAdjacentHTML('beforeend', markup4);
+                    const markup5 = `<p>${response.data.properties.periods[2].detailedForecast}</p><br>`;
+                    const name5 = document.getElementById(tag)
+                    name5.appendChild(imageElement3);
+                    name5.insertAdjacentHTML('beforeend', markup5);
 
-                    const markup9 = `<li>${response.data.properties.periods[3].name}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup9);
-                    const markup10 = `<li>${response.data.properties.periods[3].detailedForecast}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup10);
+                    const imageUrl4 = response.data.properties.periods[3].icon;
+                    const imageElement4 = document.createElement("img");
+                    imageElement4.src = imageUrl4;
+                    const markup6 = `<p><strong>${response.data.properties.periods[3].name}</strong></p>`;
+                    const name6 = document.getElementById(tag)
+                    name6.insertAdjacentHTML('beforeend', markup6);
+                    const markup7 = `<p>${response.data.properties.periods[3].detailedForecast}</p><br>`;
+                    const name7 = document.getElementById(tag)
+                    name7.appendChild(imageElement4);
+                    name7.insertAdjacentHTML('beforeend', markup7);
 
-                    const marku12 = `<li>${response.data.properties.periods[4].name}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup);
-                    const markup13 = `<li>${response.data.properties.periods[4].detailedForecast}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup1);
+                    const imageUrl5 = response.data.properties.periods[4].icon;
+                    const imageElement5 = document.createElement("img");
+                    imageElement5.src = imageUrl5;
+                    const markup8 = `<p><strong>${response.data.properties.periods[4].name}</strong></p>`;
+                    const name8 = document.getElementById(tag)
+                    name8.insertAdjacentHTML('beforeend', markup8);
+                    const markup9 = `<p>${response.data.properties.periods[4].detailedForecast}</p><br>`;
+                    const name9 = document.getElementById(tag)
+                    name9.appendChild(imageElement5);
+                    name9.insertAdjacentHTML('beforeend', markup9);
 
-                    const markup14 = `<li>${response.data.properties.periods[5].name}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup14);
-                    const markup15 = `<li>${response.data.properties.periods[5].detailedForecast}</li>`;
-                    document.querySelector('#loc').insertAdjacentHTML('beforeend', markup15);
+                    const imageUrl6 = response.data.properties.periods[5].icon;
+                    const imageElement6 = document.createElement("img");
+                    imageElement6.src = imageUrl6;
+                    const markup10 = `<p><strong>${response.data.properties.periods[5].name}</strong></p>`;
+                    const name10 = document.getElementById(tag)
+                    name10.insertAdjacentHTML('beforeend', markup10);
+                    const markup11 = `<p>${response.data.properties.periods[5].detailedForecast}</p><br>`;
+                    const name11 = document.getElementById(tag)
+                    name11.appendChild(imageElement6);
+                    name11.insertAdjacentHTML('beforeend', markup11);
                 })
                 .catch(function(error){
                     console.log(error);
@@ -147,34 +184,25 @@
     </form>
 
     <div class="weather-container">
-        <img src="http://weather.gov/images/fcicons/tsra.jpg" alt="conditions" class="weather-icon">  
         <div class="weather-info">
-            <!-- Static; currently not using an API -->
+            <div id="image-container"></div>
             <h2>{{ user.city }}</h2>
-            <script>
-                forecast('{{ user.city }}');
-            </script>
-            <ul id="{{ user.city }}"></ul>
+            <ul id="first"></ul>
             <h2>{{ user.city2 }}</h2>
-            <script>
-                forecast('{{ user.city2 }}');
-            </script>
-            <ul id="{{ user.city2 }}"></ul>
+            <ul id="second"></ul>
             <h2>{{ user.city3 }}</h2>
-            <script>
-                forecast('{{ user.city3 }}');
-            </script>
-            <ul id="{{ user.city3 }}"></ul>
+            <ul id="third"></ul>
             <h2>{{ user.city4 }}</h2>
-            <script>
-                forecast('{{ user.city4 }}');
-            </script>
-            <ul id="{{ user.city4 }}"></ul>
+            <ul id="fourth"></ul>
             <h2>{{ user.city5 }}</h2>
+            <ul id="fifth"></ul>
             <script>
-                forecast('{{ user.city5 }}');
+                forecast('{{ user.city }}', 'first');
+                forecast('{{ user.city2 }}', 'second');
+                forecast('{{ user.city3 }}', 'third');
+                forecast('{{ user.city4 }}', 'fourth');
+                forecast('{{ user.city5 }}', 'fifth');
             </script>
-            <ul id="{{ user.city5 }}"></ul>
         </div>
     </div>
     {% else %}
