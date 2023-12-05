@@ -73,7 +73,7 @@ class UpdateCity4View(View):
         form = SearchForm(request.POST)
         if form.is_valid():
             city = form.cleaned_data["query"]
-            request.user.city2 = city
+            request.user.city4 = city
             request.user.save()
             return redirect("home")
         return render(request, "update_city4.html", {"form": form})

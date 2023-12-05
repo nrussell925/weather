@@ -21,6 +21,52 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori+Antique&display=swap"> 
     <style>
+        
+
+        .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        }
+
+        .btn-logout {
+        background-color: #FF5733; 
+        color: #fff;
+        }
+
+        .btn-logout:hover {
+        background-color: #FF7043; 
+        }
+
+        .btn-change-password {
+        background-color: #3498db; 
+        color: #fff;
+        margin: 10px auto;
+        }
+
+        .btn-change-password:hover {
+        background-color: #2980b9; 
+        }
+   
+
+        /*.btn-submit {
+        background-color: #2ecc71; 
+        color: #fff;
+        }
+
+        .btn-submit:hover {
+        background-color: #27ae60; 
+        } ----------------- should use this for password_change form*/
+
+
+
+
         body {
             padding: 20px;
             font-family: 'Shippori Antique', sans-serif;
@@ -63,7 +109,7 @@
         .weather-container {
             display: flex;
             align-items: center;
-            /*justify-content: center; uncomment to center our cities midscreen*/ 
+            /*justify-content: center;  uncomment to center our cities midscreen*/ 
             margin-bottom: 20px;
             border: 1px solid #ddd;
             padding: 20px;
@@ -201,14 +247,29 @@
     <h1>Weather App</h1>
 
     {% block content %}
+
     {% if user.is_authenticated %}
-    <p>Hi {{ user.username }}</p>
-    <p> <a href="{% url 'logout' %}">Log Out</a></p>
-    <p> <a href="{% url 'password_change' %}">CHANGE PASSWORD</a></p>
-    <form method="POST">{% csrf_token %}
+        <p>Welcome, {{ user.username }}</p>
+        <div class = "profile-actions"></div>
+            <a href="{% url 'logout' %}" class="btn btn-logout">Log Out</a>
+        </div>
+
+    
+
+        <div class = "profile-actions"></div>
+            <a href="{% url 'password_change' %}" class = "btn btn-change-password">Change my password</a>
+        </div>
+
+   
+    <!-------------------------------------------------
+        <form method="POST" class = "password-change-form">
+        {% csrf_token %}
         {{ form.as_p }}
-        <input type="text" class="form-control" name="textfield" placeholder="Name of city">
-        <button onclick="geocode('textfield')" class="btn btn-primary">Add a new city</button>
+        <button type = "submit" class = "btn btn-submit">Change my password</button>
+            USE FOR PASSWORD_CHANGE_FORM ----------------->
+        
+   
+        
     </form>
 
     <div class="weather-container">
