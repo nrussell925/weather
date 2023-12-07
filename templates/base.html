@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>HAHAHAHA</title>
+  <title>Weather App</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
   <link href="{% static 'css/base.css' %}" rel="stylesheet" s>
 </head>
@@ -15,8 +15,8 @@
     <p><a href="{% url 'logout' %}">Log out</a></p>
     {% else %}
     <p>You are not logged in.</p>
-    <a href="{% url 'login' %}">Logjj In</a> |
-    <a href="{% url 'signup' %}">Sijjgn Up</a>
+    <a href="{% url 'login' %}">Log In</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
     {% endif %}
     <!--- end new HTML... -->
     {% block content %}
