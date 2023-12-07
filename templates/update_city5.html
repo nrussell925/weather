@@ -1,5 +1,53 @@
-<form method="post" action="{% url 'update_city5' %}"> {% csrf_token %}
-    
-    {{ form }}
-    <button type="submit">Update City</button>
-</form>
+
+<style>
+    input {
+            margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 50%;
+            position: absolute;
+            top: 40.5%;
+            left: 25%;
+    }
+
+    button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: large;
+            position: absolute;
+            top: 40%;
+            left: 75.5%;
+    }
+
+    button:hover {
+            background-color: #0056b3;
+    }
+
+    body {
+            padding: 20px;
+            font-family: 'Shippori Antique', sans-serif;
+    }
+
+    h1 { /* "Weather App" */
+            font-family: 'Cambria', serif;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #007bff;
+            font-size: 60px;
+            height: 100px;
+            line-height:5;
+    }
+</style>
+<body>
+    <h1>Look For a City</h1>
+    <form method="post" action="{% url 'update_city5' %}"> {% csrf_token %}
+        
+        {{ form }}
+        <button type="submit">Update City</button>
+    </form>
+</body>
