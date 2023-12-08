@@ -25,4 +25,4 @@ class CustomUserChangeForm(UserChangeForm):
 class SearchForm(
     forms.Form
 ):  # user types city into search bar and it's added to their account
-    query = forms.CharField(label="Search", max_length=100)
+    query = forms.CharField(label="", max_length=100)

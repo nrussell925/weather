@@ -66,3 +66,34 @@ class HomePageTests(SimpleTestCase):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "home.html")
+
+
+class UpdateCityTests(TestCase):
+    def test_url_exists_at_desired_location(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_update1_view(self):
+        response = self.client.get(reverse("update_city"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "update_city.html")
+
+    def test_update2_view(self):
+        response = self.client.get(reverse("update_city2"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "update_city2.html")
+
+    def test_update3_view(self):
+        response = self.client.get(reverse("update_city3"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "update_city3.html")
+
+    def test_update4_view(self):
+        response = self.client.get(reverse("update_city4"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "update_city4.html")
+
+    def test_update5_view(self):
+        response = self.client.get(reverse("update_city5"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "update_city5.html")
