@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <?php 
@@ -135,11 +136,12 @@
 
         }*/
     </style>
+
 </head>
 
 
 <body>
-
+    <img src="{% static 'images/sun.png' %}" class="image" alt="Weather App Logo" width="200px">
     <script>
         function forecast(loc, a) {
             const location = loc;
