@@ -1,7 +1,6 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php 
         header('Access-Control-Allow-Origin: *');
@@ -18,42 +17,40 @@
     <!-- Just googled the bootstrap link; haven't tested it yet. Essentially a placeholder for now -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Link to our google font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori+Antique&display=swap"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori+Antique&display=swap">
     <style>
-        
-
         .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        text-align: left;
-        text-decoration: none;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background-color 0.3s;
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         .btn-logout {
-        background-color: #FF5733; 
-        color: #fff;
+            background-color: #FF5733;
+            color: #fff;
         }
 
         .btn-logout:hover {
-        background-color: #FF7043; 
+            background-color: #FF7043;
         }
 
         .btn-change-password {
-        background-color: #3498db; 
-        color: #fff;
-        margin: 10px auto;
+            background-color: #3498db;
+            color: #fff;
+            margin: 10px auto;
         }
 
         .btn-change-password:hover {
-        background-color: #2980b9; 
+            background-color: #2980b9;
         }
-   
+
 
         /*.btn-submit {
         background-color: #2ecc71; 
@@ -70,9 +67,12 @@
         body {
             padding: 20px;
             font-family: 'Shippori Antique', sans-serif;
+            background-color: #cfdcff;
+
         }
 
-        h1 { /* "Weather App" */
+        h1 {
+            /* "Weather App" */
             font-family: 'Oleo Script', cursive;
             text-align: center;
             margin-bottom: 40px;
@@ -109,9 +109,9 @@
         .weather-container {
             display: flex;
             align-items: center;
-            /*justify-content: center;  uncomment to center our cities midscreen*/ 
+            /*justify-content: center;  uncomment to center our cities midscreen*/
             margin-bottom: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid #ffffff;
             padding: 20px;
             border-radius: 10px;
         }
@@ -125,6 +125,7 @@
         .weather-info {
             text-align: left;
         }
+
         /*p {
             display: flex;
             font-size: 20px;
@@ -136,112 +137,114 @@
     </style>
 </head>
 
+
 <body>
+
     <script>
-        function forecast(loc, a){
+        function forecast(loc, a) {
             const location = loc;
             const tag = a;
-            axios.get('https://geocode.maps.co/search',{
-                params:{
-                    q:location
+            axios.get('https://geocode.maps.co/search', {
+                params: {
+                    q: location
                 }
             })
-            .then(function(response){
-                // Log full response
-                //console.log(response);
-
-                //Formatted address
-                console.log(response.data[0].boundingbox[0]);
-                console.log(response.data[0].boundingbox[2]);
-            axios.get('https://api.weather.gov/points/'+response.data[0].boundingbox[0]+','+response.data[0].boundingbox[2])
-            .then(function(response){
-                //console.log(response);
-                axios.get(response.data.properties.forecast)
-                .then(function(response){
+                .then(function (response) {
+                    // Log full response
                     //console.log(response);
-                    //Change to return when the forecast is followed by
-                    //forecast and icon. Return in array 3 at a time for
-                    //"three day forecast"
-                    //console.log(response.data.properties.periods[0].name);
-                    //console.log(response.data.properties.periods[0].detailedForecast);
-                    //console.log(response.data.properties.periods[0].icon);
-                    const imageUrl = response.data.properties.periods[0].icon;
-                    const imageElement = document.createElement("img");
-                    imageElement.src = imageUrl;
-                    const markup = `<p><strong>${response.data.properties.periods[0].name}</strong></p>`;
-                    const name = document.getElementById(tag)
-                    name.insertAdjacentHTML('beforeend', markup);
-                    const markup1 = `<p>${response.data.properties.periods[0].detailedForecast}</p><br>`;
-                    const name1 = document.getElementById(tag)
-                    name1.appendChild(imageElement);
-                    name1.insertAdjacentHTML('beforeend', markup1);
 
-                    const imageUrl2 = response.data.properties.periods[1].icon;
-                    const imageElement2 = document.createElement("img");
-                    imageElement2.src = imageUrl2;
-                    const markup2 = `<p><strong>${response.data.properties.periods[1].name}</strong></p>`;
-                    const name2 = document.getElementById(tag)
-                    name2.insertAdjacentHTML('beforeend', markup2);
-                    const markup3 = `<p>${response.data.properties.periods[1].detailedForecast}</p><br>`;
-                    const name3 = document.getElementById(tag)
-                    name3.appendChild(imageElement2);
-                    name3.insertAdjacentHTML('beforeend', markup3);
+                    //Formatted address
+                    console.log(response.data[0].boundingbox[0]);
+                    console.log(response.data[0].boundingbox[2]);
+                    axios.get('https://api.weather.gov/points/' + response.data[0].boundingbox[0] + ',' + response.data[0].boundingbox[2])
+                        .then(function (response) {
+                            //console.log(response);
+                            axios.get(response.data.properties.forecast)
+                                .then(function (response) {
+                                    //console.log(response);
+                                    //Change to return when the forecast is followed by
+                                    //forecast and icon. Return in array 3 at a time for
+                                    //"three day forecast"
+                                    //console.log(response.data.properties.periods[0].name);
+                                    //console.log(response.data.properties.periods[0].detailedForecast);
+                                    //console.log(response.data.properties.periods[0].icon);
+                                    const imageUrl = response.data.properties.periods[0].icon;
+                                    const imageElement = document.createElement("img");
+                                    imageElement.src = imageUrl;
+                                    const markup = `<p><strong>${response.data.properties.periods[0].name}</strong></p>`;
+                                    const name = document.getElementById(tag)
+                                    name.insertAdjacentHTML('beforeend', markup);
+                                    const markup1 = `<p>${response.data.properties.periods[0].detailedForecast}</p><br>`;
+                                    const name1 = document.getElementById(tag)
+                                    name1.appendChild(imageElement);
+                                    name1.insertAdjacentHTML('beforeend', markup1);
 
-                    const imageUrl3 = response.data.properties.periods[2].icon;
-                    const imageElement3 = document.createElement("img");
-                    imageElement3.src = imageUrl3;
-                    const markup4 = `<p><strong>${response.data.properties.periods[2].name}</strong></p>`;
-                    const name4 = document.getElementById(tag)
-                    name4.insertAdjacentHTML('beforeend', markup4);
-                    const markup5 = `<p>${response.data.properties.periods[2].detailedForecast}</p><br>`;
-                    const name5 = document.getElementById(tag)
-                    name5.appendChild(imageElement3);
-                    name5.insertAdjacentHTML('beforeend', markup5);
+                                    const imageUrl2 = response.data.properties.periods[1].icon;
+                                    const imageElement2 = document.createElement("img");
+                                    imageElement2.src = imageUrl2;
+                                    const markup2 = `<p><strong>${response.data.properties.periods[1].name}</strong></p>`;
+                                    const name2 = document.getElementById(tag)
+                                    name2.insertAdjacentHTML('beforeend', markup2);
+                                    const markup3 = `<p>${response.data.properties.periods[1].detailedForecast}</p><br>`;
+                                    const name3 = document.getElementById(tag)
+                                    name3.appendChild(imageElement2);
+                                    name3.insertAdjacentHTML('beforeend', markup3);
 
-                    const imageUrl4 = response.data.properties.periods[3].icon;
-                    const imageElement4 = document.createElement("img");
-                    imageElement4.src = imageUrl4;
-                    const markup6 = `<p><strong>${response.data.properties.periods[3].name}</strong></p>`;
-                    const name6 = document.getElementById(tag)
-                    name6.insertAdjacentHTML('beforeend', markup6);
-                    const markup7 = `<p>${response.data.properties.periods[3].detailedForecast}</p><br>`;
-                    const name7 = document.getElementById(tag)
-                    name7.appendChild(imageElement4);
-                    name7.insertAdjacentHTML('beforeend', markup7);
+                                    const imageUrl3 = response.data.properties.periods[2].icon;
+                                    const imageElement3 = document.createElement("img");
+                                    imageElement3.src = imageUrl3;
+                                    const markup4 = `<p><strong>${response.data.properties.periods[2].name}</strong></p>`;
+                                    const name4 = document.getElementById(tag)
+                                    name4.insertAdjacentHTML('beforeend', markup4);
+                                    const markup5 = `<p>${response.data.properties.periods[2].detailedForecast}</p><br>`;
+                                    const name5 = document.getElementById(tag)
+                                    name5.appendChild(imageElement3);
+                                    name5.insertAdjacentHTML('beforeend', markup5);
 
-                    const imageUrl5 = response.data.properties.periods[4].icon;
-                    const imageElement5 = document.createElement("img");
-                    imageElement5.src = imageUrl5;
-                    const markup8 = `<p><strong>${response.data.properties.periods[4].name}</strong></p>`;
-                    const name8 = document.getElementById(tag)
-                    name8.insertAdjacentHTML('beforeend', markup8);
-                    const markup9 = `<p>${response.data.properties.periods[4].detailedForecast}</p><br>`;
-                    const name9 = document.getElementById(tag)
-                    name9.appendChild(imageElement5);
-                    name9.insertAdjacentHTML('beforeend', markup9);
+                                    const imageUrl4 = response.data.properties.periods[3].icon;
+                                    const imageElement4 = document.createElement("img");
+                                    imageElement4.src = imageUrl4;
+                                    const markup6 = `<p><strong>${response.data.properties.periods[3].name}</strong></p>`;
+                                    const name6 = document.getElementById(tag)
+                                    name6.insertAdjacentHTML('beforeend', markup6);
+                                    const markup7 = `<p>${response.data.properties.periods[3].detailedForecast}</p><br>`;
+                                    const name7 = document.getElementById(tag)
+                                    name7.appendChild(imageElement4);
+                                    name7.insertAdjacentHTML('beforeend', markup7);
 
-                    const imageUrl6 = response.data.properties.periods[5].icon;
-                    const imageElement6 = document.createElement("img");
-                    imageElement6.src = imageUrl6;
-                    const markup10 = `<p><strong>${response.data.properties.periods[5].name}</strong></p>`;
-                    const name10 = document.getElementById(tag)
-                    name10.insertAdjacentHTML('beforeend', markup10);
-                    const markup11 = `<p>${response.data.properties.periods[5].detailedForecast}</p><br>`;
-                    const name11 = document.getElementById(tag)
-                    name11.appendChild(imageElement6);
-                    name11.insertAdjacentHTML('beforeend', markup11);
+                                    const imageUrl5 = response.data.properties.periods[4].icon;
+                                    const imageElement5 = document.createElement("img");
+                                    imageElement5.src = imageUrl5;
+                                    const markup8 = `<p><strong>${response.data.properties.periods[4].name}</strong></p>`;
+                                    const name8 = document.getElementById(tag)
+                                    name8.insertAdjacentHTML('beforeend', markup8);
+                                    const markup9 = `<p>${response.data.properties.periods[4].detailedForecast}</p><br>`;
+                                    const name9 = document.getElementById(tag)
+                                    name9.appendChild(imageElement5);
+                                    name9.insertAdjacentHTML('beforeend', markup9);
+
+                                    const imageUrl6 = response.data.properties.periods[5].icon;
+                                    const imageElement6 = document.createElement("img");
+                                    imageElement6.src = imageUrl6;
+                                    const markup10 = `<p><strong>${response.data.properties.periods[5].name}</strong></p>`;
+                                    const name10 = document.getElementById(tag)
+                                    name10.insertAdjacentHTML('beforeend', markup10);
+                                    const markup11 = `<p>${response.data.properties.periods[5].detailedForecast}</p><br>`;
+                                    const name11 = document.getElementById(tag)
+                                    name11.appendChild(imageElement6);
+                                    name11.insertAdjacentHTML('beforeend', markup11);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                 })
-                .catch(function(error){
+                .catch(function (error) {
                     console.log(error);
                 });
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-            })
-            .catch(function(error){
-                console.log(error);
-            });
         }
     </script>
     <h1>Weather App</h1>
@@ -249,27 +252,27 @@
     {% block content %}
 
     {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}</p>
-        <div class = "profile-actions"></div>
-            <a href="{% url 'logout' %}" class="btn btn-logout">Log Out</a>
-        </div>
+    <p>Welcome, {{ user.username }}</p>
+    <div class="profile-actions"></div>
+    <a href="{% url 'logout' %}" class="btn btn-logout">Log Out</a>
+    </div>
 
-    
 
-        <div class = "profile-actions"></div>
-            <a href="{% url 'password_change' %}" class = "btn btn-change-password">Change my password</a>
-        </div>
 
-   
+    <div class="profile-actions"></div>
+    <a href="{% url 'password_change' %}" class="btn btn-change-password">Change my password</a>
+    </div>
+
+
     <!-------------------------------------------------
         <form method="POST" class = "password-change-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type = "submit" class = "btn btn-submit">Change my password</button>
             USE FOR PASSWORD_CHANGE_FORM ----------------->
-        
-   
-        
+
+
+
     </form>
 
     <div class="weather-container">
@@ -306,4 +309,5 @@
     {% endif %}
     {% endblock content %}
 </body>
+
 </html>
