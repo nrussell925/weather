@@ -135,10 +135,7 @@
 
 
 <body>
-<<<<<<< HEAD
     <img src="{% static 'images/sun.png' %}" class="image" alt="Weather App Logo" width="200px">
-=======
->>>>>>> 40b98a2a2ec2720e7d6ada6b3dba832c637f59be
     <script>
         function forecast(loc, a) {
             const location = loc;
@@ -147,7 +144,7 @@
                 params: {
                     q: location
                 }
-            }, )
+            },)
                 .then(function (response) {
                     // Log full response
                     //console.log(response);
@@ -159,7 +156,7 @@
                         .then(function (response) {
                             //console.log(response);
                             axios.get(response.data.properties.forecast)
-                            .then(function (response) {
+                                .then(function (response) {
                                     //console.log(response);
                                     //Change to return when the forecast is followed by
                                     //forecast and icon. Return in array 3 at a time for
@@ -296,9 +293,9 @@
                 function sleep(num) {
                     let now = new Date();
                     let stop = now.getTime() + num;
-                    while(true) {
+                    while (true) {
                         now = new Date();
-                        if(now.getTime() > stop) return;
+                        if (now.getTime() > stop) return;
                     }
                 }
 
