@@ -1,3 +1,4 @@
+{% load static %}
 <style>
         input {
                 margin-right: 10px;
@@ -43,6 +44,14 @@
                 height: 100px;
                 line-height: 5;
         }
+
+        .center {
+                display: block;
+                margin-top: 80px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 300px;
+        }
 </style>
 
 <body>
@@ -52,4 +61,6 @@
                 {{ form }}
                 <button type="submit">Update City</button>
         </form>
+        <img src="{% static 'images/sunandcloud.png' %}" class="center" alt="Weather App Logo" width="200px">
+
 </body>

@@ -1,3 +1,4 @@
+{% load static %}
 <style>
         input {
                 margin-right: 10px;
@@ -43,6 +44,25 @@
                 height: 100px;
                 line-height: 5;
         }
+
+        .center {
+                display: block;
+                margin-top: -200px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-left: -100px;
+                width: 300px;
+        }
+
+        .center2 {
+                display: block;
+                margin-top: 900px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-left: -70px;
+                width: 300px;
+
+        }
 </style>
 
 <body>
@@ -52,4 +72,6 @@
                 {{ form }}
                 <button type="submit">Update City</button>
         </form>
+        <img src="{% static 'images/lightning2.png' %}" class="center" alt="Weather App Logo" width="200px">
+        <img src="{% static 'images/lightning3.png' %}" class="center2" alt="Weather App Logo" width="200px">
 </body>
