@@ -26,7 +26,21 @@ SECRET_KEY = "django-insecure-1$&dn79w95#9d8w)yvnrrzipywa8en6b8!=jkx0iz(e(%0ca24
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ["https://connorandnickweatherapp.fly.dev"]
+
+ALLOWED_HOSTS = [
+    "https://connorandnickweatherapp.fly.dev",
+    "connorandnickweatherapp",
+    "127.0.0.1",
+    "connorandnickweatherapp.fly.dev",
+    "localhost",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://connorandnickweatherapp.fly.dev",
+    "http://connorandnickweatherapp",
+    "https://connorandnickweatherapp",
+]
 
 
 # Application definition
@@ -37,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "corsheaders",
     "django.contrib.staticfiles",
     "crispy_forms",
     "crispy_bootstrap5",
@@ -47,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -120,9 +136,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/templates/static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "templates/static")]  # COME BACK TO
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = "static"
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 # Default primary key field type
